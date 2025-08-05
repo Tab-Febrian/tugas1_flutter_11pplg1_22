@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'register_page.dart';
 import 'package:practice/calculator_page.dart';
+import 'custom_input_fiels.dart';
+import 'Widgets/widget_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -51,52 +53,58 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(child: Image.asset('asset/windows.png', width: 140)),
-            Container(
-              margin: EdgeInsets.only(top: 20, bottom: 20),
-              child: TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  labelText: "Username",
-                  hintText: 'Input username',
-                  labelStyle: TextStyle(color: Colors.black),
-                  hintStyle: TextStyle(color: Colors.black),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
-                ),
-              ),
-            ),
-            TextField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: 'Input password',
-                labelStyle: TextStyle(color: Colors.black),
-                hintStyle: TextStyle(color: Colors.black),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent),
-                ),
-              ),
-            ),
+            Container( margin: EdgeInsets.only(bottom: 15), child: CustomInputField(label: "Username", controller: usernameController,)),
+            CustomInputField(label: "Password", controller: passwordController, obscureText: true,),
+            // Container(
+            //   margin: EdgeInsets.only(top: 20),
+            //   child: Center(
+            //     child: SizedBox(
+            //       width: double.infinity,
+            //       child: ElevatedButton(
+            //         onPressed: () {
+            //           if (usernameController.text == 'admin' &&
+            //               passwordController.text == 'admin') {
+            //             // _showSnackBar('Login successful!', Colors.green);
+            //             // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+            //             setState(() {
+            //               statusLogin = "Login succesful!";
+            //               print(statusLogin);
+            //               Navigator.push(
+            //                 context,
+            //                 MaterialPageRoute(
+            //                   builder: (context) => const CalculatorPage(),
+            //                 ),
+            //               );
+            //             });
+            //           } else {
+            //             // _showSnackBar('Invalid username or password.', Colors.red);
+            //             setState(() {
+            //               statusLogin = "Invalid username or password.";
+            //               print(statusLogin);
+            //             });
+            //           }
+            //         },
+            //         child: Text("Login"),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            
             Container(
               margin: EdgeInsets.only(top: 20),
               child: Center(
                 child: SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (usernameController.text == 'admin' &&
-                          passwordController.text == 'admin') {
+                  child: CustomButton(
+                    text: "Login",
+                    textcolor: Colors.black, onPressed: () { 
+                      if (usernameController.text == 'admin' && passwordController.text == 'admin') {
                         // _showSnackBar('Login successful!', Colors.green);
                         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
                         setState(() {
                           statusLogin = "Login succesful!";
                           print(statusLogin);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CalculatorPage(),
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const CalculatorPage(),
                             ),
                           );
                         });
@@ -106,13 +114,12 @@ class _LoginPageState extends State<LoginPage> {
                           statusLogin = "Invalid username or password.";
                           print(statusLogin);
                         });
-                      }
-                    },
-                    child: Text("Login"),
+                      }},
                   ),
                 ),
               ),
             ),
+
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -122,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: Text("You not have an account? Sign in"),
             ),
-            // Text(statusLogin),
+            Text(statusLogin),
           ],
         ),
       ),

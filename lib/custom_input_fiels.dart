@@ -6,24 +6,21 @@ class CustomInputField extends StatelessWidget {
   final bool obscureText;
 
   const CustomInputField({
-    Key? key,
+    super.key,
     required this.label,
     required this.controller,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: TextField(
+    return TextField(
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           labelText: label,
           border: const OutlineInputBorder(),
         ),
-      ),
-    );
+      );
   }
 }

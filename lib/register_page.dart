@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'custom_input_fiels.dart';
+import 'Widgets/widget_button.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -31,20 +32,6 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void _register() {
-    print("Nama: ${nameController.text}");
-    print("Email: ${emailController.text}");
-    print("Password: ${passwordController.text}");
-    print("Jenis Kelamin: $selectedGender");
-    print("Tanggal Lahir: ${selectedDate?.toLocal().toString().split(' ')[0]}");
-
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Registrasi berhasil!')));
-
-    Navigator.pop(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,16 +47,11 @@ class _RegisterPageState extends State<RegisterPage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            CustomInputField(label: "Nama", controller: nameController),
-            CustomInputField(
-              label: "Email / Username",
-              controller: emailController,
-            ),
-            CustomInputField(
-              label: "Password",
-              controller: passwordController,
-              obscureText: true,
-            ),
+            CustomInputField(label: "Nama", controller: nameController,),
+            const SizedBox(height: 16),
+            CustomInputField(label: "Email / Username", controller: emailController,),
+            const SizedBox(height: 16),
+            CustomInputField(label: "Password", controller: passwordController, obscureText: true,),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               value: selectedGender,
@@ -100,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
               onTap: () => _selectDate(context),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: _register, child: const Text("Register")),
+            CustomButton(text: "Register", textcolor: Colors.black, onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));})
           ],
         ),
       ),
